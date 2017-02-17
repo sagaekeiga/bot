@@ -1,0 +1,42 @@
+<%= link_to "新規登録", new_bot_path %>
+<table class="type07">
+    <thead>
+    <tr>
+        <th scope="cols"></th>
+        <th scope="cols">選挙名</th>
+        <th scope="cols">URL</th>
+        <th scope="cols">記事ID</th>
+        <th scope="cols">開票日</th>
+    </tr>
+    </thead>
+    <tbody>
+        
+    <% @bots.each do |bot| %>
+
+        <tr>
+            <th scope="row"><%= bot.id %></th>
+    		<td><%= bot.name %></td>
+    		<td><%= link_to "#{bot.url}", bot.url %></td>
+    		<td><%= bot.article_id %></td>
+    		<td><%= bot.date %></td>
+        </tr>
+        
+    <% end %>
+    </tbody>
+</table>
+
+
+
+    <% @urls = Array.new() %>
+
+    <% @bots.each do |bot| %>
+    <% @urls.push("#{bot.url}") %>
+        
+    <% end %>
+    
+    <% @urls.each do |url| %>
+     <%= url %>
+    <% end %>
+    
+    <%= @urls[0] %>
+    <%= @urls[2] %>
