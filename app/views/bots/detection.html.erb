@@ -1,0 +1,38 @@
+<%= link_to "新規登録", new_bot_path %>
+<%= form_for @b_search_form, as: 'b_search', url: bots_detection_path, html: {method: :get} do |f| %>
+　<%= f.text_field :name,  placeholder: "検索", class: :"form-control input-sm", size: :"60" %>
+  <%= button_tag(class: :"form-control input-sm", size: :"10", style: :"margin-top: -14px;") do %>
+   <%= image_tag('search.png', { :border => '0', :alt => '検索'}) %>
+  <% end %>
+<% end %>
+<table class="type07">
+    <thead>
+    <tr>
+        <th scope="cols"></th>
+        <th scope="cols">選挙名</th>
+        <th scope="cols">URL</th>
+        <th scope="cols">記事ID</th>
+        <th scope="cols">開票日</th>
+        <th scope="cols">管理</th>
+    </tr>
+    </thead>
+    <tbody>
+        
+    <% @search_bots.each do |search_bot| %>
+
+        <tr>
+            <th scope="row"><%= search_bot.id %></th>
+    		<td><%= search_bot.name %></td>
+    		<td><%= link_to "#{search_bot.url}", search_bot.url %></td>
+    		<td><%= search_bot.article_id %></td>
+    		<td><%= search_bot.date %></td>
+    		<td>
+    		    <%= link_to "編集", edit_bot_path(search_bot.id) %>
+    		    <%= link_to "削除", search_bot, method: :delete, data: { confirm: "本当に削除してもいいですか？" } %>
+    		    
+    		</td>
+        </tr>
+        
+    <% end %>
+    </tbody>
+</table>

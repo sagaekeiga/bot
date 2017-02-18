@@ -1,4 +1,15 @@
 <%= link_to "新規登録", new_bot_path %>
+
+<form class="form-inline col-xs-2" role="form">
+    <%= form_for @b_search_form, as: 'b_search', url: bots_detection_path, html: {method: :get} do |f| %>
+    　<%= f.text_field :name,  placeholder: "検索", class: :"form-control input-sm" %>
+      <%= button_tag(class: :"form-control input-sm", size: :"10") do %>
+       <%= image_tag('search.png', { :border => '0', :alt => '検索'}) %>
+      <% end %>
+    <% end %>
+</form>
+
+<div class="col-xs-12">
 <table class="type07">
     <thead>
     <tr>
@@ -7,6 +18,7 @@
         <th scope="cols">URL</th>
         <th scope="cols">記事ID</th>
         <th scope="cols">開票日</th>
+        <th scope="cols">管理</th>
     </tr>
     </thead>
     <tbody>
@@ -19,24 +31,21 @@
     		<td><%= link_to "#{bot.url}", bot.url %></td>
     		<td><%= bot.article_id %></td>
     		<td><%= bot.date %></td>
+    		<td>
+    		    <%= link_to "編集", edit_bot_path(bot.id) %>
+    		    <%= link_to "削除", bot, method: :delete, data: { confirm: "本当に削除してもいいですか？" } %>
+    		    
+    		</td>
         </tr>
         
     <% end %>
     </tbody>
 </table>
+</div>
+
+
+<%= link_to "crawl", bots_crawl_path %>
 
 
 
-    <% @urls = Array.new() %>
 
-    <% @bots.each do |bot| %>
-    <% @urls.push("#{bot.url}") %>
-        
-    <% end %>
-    
-    <% @urls.each do |url| %>
-     <%= url %>
-    <% end %>
-    
-    <%= @urls[0] %>
-    <%= @urls[2] %>

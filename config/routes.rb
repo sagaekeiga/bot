@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root 'bots#index'
+  get 'bots/crawl', to: 'bots#crawl'
+  get 'bots/detection', to: 'bots#detection'
   
-  
-  resources :bots, only: [:create, :destroy, :show, :index, :new]
+  resources :bots, only: [:create, :destroy, :show, :index, :new, :edit, :update]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
