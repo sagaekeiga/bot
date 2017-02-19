@@ -35,6 +35,7 @@ class BotsController < ApplicationController
         @urls = []
         
         opts = {
+            :user_agent => "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)",
         	:obey_robots_txt => true,
         	:depth_limit => 0,
         	:delay => 5
