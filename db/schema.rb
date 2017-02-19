@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -20,8 +19,7 @@ ActiveRecord::Schema.define(version: 20170217160352) do
     t.date     "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name", "url", "article_id", "date"], name: "index_bots_on_name_and_url_and_article_id_and_date"
   end
-
-  add_index "bots", ["name", "url", "article_id", "date"], name: "index_bots_on_name_and_url_and_article_id_and_date"
 
 end
