@@ -1,7 +1,7 @@
 worker_processes 2
 working_directory "/home/anime/bot/current"
 
-listen "/var/run/tmp/unicorn.sock"
-pid "/var/run/tmp/unicorn.pid"
+listen "/var/run/unicorn/unicorn_bot.sock"
+pid "/var/run/unicorn/unicorn_bot.pid"
 
 preload_app true
