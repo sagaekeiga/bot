@@ -30,38 +30,26 @@ class BotsController < ApplicationController
     end
     
     def crawl
-        @bots = Bot.all
-        @crawls = []
-        @urls = []
-        
-        opts = {
-            :user_agent => "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)",
-        	:obey_robots_txt => true,
-        	:depth_limit => 0,
-        	:delay => 5
-        }
-
+        @bots = Bot.all#登録した情報を全て取得
         
         @bots.each do |bot|
-         @urls.push("#{bot.url}")
+            doc = Nokogiri::HTML(open("#{bot.url}"))#URLの指定
+            @crawl = doc.xpath("#{bot.xpath}").inner_html#xpathの情報を抽出
+            
+               ##Mysqlに抽出情報とpost_idを保存
+               begin
+                    connection = Mysql::connect("153.120.105.36", "miyagise_sagae", "s19930528", "miyagise_kari")
+                    connection.query("set character set utf8")
+                    connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '#{crawl}' WHERE  `post_id` = '#{bot.article_id}' AND meta_key='votes';")
+                    connection.close
+                rescue => e#データが保存されない場合管理者にメールを送信
+                  	PostMailer.post_email.deliver
+                end
+                
+            doc.delete(Nokogiri::HTML(open("#{url}")))#URLの削除
+            @crawl.delete(doc.xpath("#{bot.xpath}").inner_html)#xpathの情報を削除
         end
-        
-            Anemone.crawl(@urls, opts) do |anemone|
-            	anemone.on_every_page do |page|
-            		@crawls.push(page.doc.css('tbody').to_s)
-            	end
-            end
-        connection = Mysql::connect("153.120.105.36", "miyagise_sagae", "s19930528", "miyagise_kari")
-        
-        # # 文字コードをUTF8に設定
-        connection.query("set character set utf8")
-
-
-        #取得データを更新
-        connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '寒河江rubyから更新しました！' WHERE  `post_id` ='110288' AND meta_value='votes';")
-        
-        # コネクションを閉じる
-        connection.close
+            
     end
     
     def edit
@@ -82,6 +70,6 @@ class BotsController < ApplicationController
       private
       
         def bot_params
-          params.require(:bot).permit(:name, :url, :article_id, :date)
+          params.require(:bot).permit(:name, :url, :article_id, :date, :xpath)
         end
 end

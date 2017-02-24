@@ -18,6 +18,7 @@
         <th scope="cols">URL</th>
         <th scope="cols">記事ID</th>
         <th scope="cols">開票日</th>
+        <th scope="cols">Xpath</th>
         <th scope="cols">管理</th>
     </tr>
     </thead>
@@ -30,6 +31,7 @@
     		<td><%= bot.name %></td>
     		<td><%= link_to "#{bot.url}", bot.url %></td>
     		<td><%= bot.article_id %></td>
+    		<td><%= bot.xpath %></td>
     		<td><%= bot.date %></td>
     		<td>
     		    <%= link_to "編集", edit_bot_path(bot.id) %>

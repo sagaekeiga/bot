@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170217160352) do
     t.text     "url"
     t.integer  "article_id"
     t.date     "date"
+    t.text     "xpath"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "url", "article_id", "date"], name: "index_bots_on_name_and_url_and_article_id_and_date"

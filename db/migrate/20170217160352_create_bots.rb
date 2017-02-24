@@ -5,6 +5,7 @@ class CreateBots < ActiveRecord::Migration
       t.text :url
       t.integer :article_id
       t.date :date
+      t.text :xpath
 
       t.timestamps null: false
     end
