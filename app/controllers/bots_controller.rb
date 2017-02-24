@@ -1,6 +1,8 @@
 class BotsController < ApplicationController
 
-      include ActiveModel::Model
+    include ActiveModel::Model
+
+    http_basic_authenticate_with name: "seijipress", password: "seijipress"
 
     def new
      @bot = Bot.new
@@ -21,8 +23,9 @@ class BotsController < ApplicationController
     end
     
     def index
-      @b_search_form = SearchForm.new
       @bots = Bot.all
+      @q = Bot.search(params[:q])
+      @bots = @q.result(distinct: true)
     end
     
     def show
@@ -32,22 +35,29 @@ class BotsController < ApplicationController
     def crawl
         @bots = Bot.all#登録した情報を全て取得
         
+        
+        @i= 0
         @bots.each do |bot|
             doc = Nokogiri::HTML(open("#{bot.url}"))#URLの指定
             @crawl = doc.xpath("#{bot.xpath}").inner_html#xpathの情報を抽出
+            @i += 1
             
                ##Mysqlに抽出情報とpost_idを保存
                begin
                     connection = Mysql::connect("153.120.105.36", "miyagise_sagae", "s19930528", "miyagise_kari")
                     connection.query("set character set utf8")
-                    connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '#{crawl}' WHERE  `post_id` = '#{bot.article_id}' AND meta_key='votes';")
+                    connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '<table> #{@crawl} </table>' WHERE  `post_id` = '#{bot.article_id}' AND meta_key='votes';")
                     connection.close
                 rescue => e#データが保存されない場合管理者にメールを送信
                   	PostMailer.post_email.deliver
                 end
                 
-            doc.delete(Nokogiri::HTML(open("#{url}")))#URLの削除
-            @crawl.delete(doc.xpath("#{bot.xpath}").inner_html)#xpathの情報を削除
+              if  @i > @bots.count then
+                break
+              end
+  
+            doc.delete(Nokogiri::HTML(open("#{bot.url}")))#URLの削除
+            @crawl.clear#xpathの情報を削除
         end
             
     end
@@ -60,11 +70,6 @@ class BotsController < ApplicationController
         @bot = Bot.find(params[:id])
         @bot.update(bot_params)
         render 'edit'
-    end
-    
-    def detection ##検索結果表示ページを表示
-      @b_search_form = SearchForm.new(params[:b_search])
-      @search_bots = @b_search_form.bot_search(@b_search_form.name)
     end
     
       private

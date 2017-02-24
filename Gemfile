@@ -30,6 +30,8 @@ gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 
 
+gem "ransack"
+
 gem 'mysql'
 gem 'unicorn'
 

@@ -1,13 +1,26 @@
 <%= link_to "新規登録", new_bot_path %>
+<%= link_to "crawl", bots_crawl_path %>
 
-<form class="form-inline col-xs-2" role="form">
-    <%= form_for @b_search_form, as: 'b_search', url: bots_detection_path, html: {method: :get} do |f| %>
-    　<%= f.text_field :name,  placeholder: "検索", class: :"form-control input-sm" %>
-      <%= button_tag(class: :"form-control input-sm", size: :"10") do %>
-       <%= image_tag('search.png', { :border => '0', :alt => '検索'}) %>
-      <% end %>
-    <% end %>
-</form>
+
+<%= search_form_for @q do |f| %>
+
+  <%= f.search_field :name_start, class: :"form-control", :placeholder => "選挙名"%>
+  <br />
+
+  <%= f.search_field :url_cont, class: :"form-control", :placeholder => "URL"%>
+  <br />
+
+  <%= f.search_field :article_id_eq, class: :"form-control", :placeholder => "記事ID"%>
+  <br />
+
+  <%= f.search_field :xpath_eq, class: :"form-control", :placeholder => "xpath"%>
+  <br />
+
+  <%= f.search_field :date_eq, class: :"form-control", :placeholder => "開票日"%>
+  <br />
+
+  <%= f.submit "検索", class: :"btn"%><br><br>
+<% end %>
 
 <div class="col-xs-12">
 <table class="type07">
@@ -17,8 +30,8 @@
         <th scope="cols">選挙名</th>
         <th scope="cols">URL</th>
         <th scope="cols">記事ID</th>
-        <th scope="cols">開票日</th>
         <th scope="cols">Xpath</th>
+        <th scope="cols">開票日</th>
         <th scope="cols">管理</th>
     </tr>
     </thead>
@@ -46,7 +59,6 @@
 </div>
 
 
-<%= link_to "crawl", bots_crawl_path %>
 
 
 
