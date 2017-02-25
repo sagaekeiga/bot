@@ -37,6 +37,7 @@ class BotsController < ApplicationController
         
         
         @i= 0
+        @time = Time.new
         @bots.each do |bot|
             doc = Nokogiri::HTML(open("#{bot.url}"))#URLの指定
             @crawl = doc.xpath("#{bot.xpath}").inner_html#xpathの情報を抽出
@@ -46,7 +47,7 @@ class BotsController < ApplicationController
                begin
                     connection = Mysql::connect("153.120.105.36", "miyagise_sagae", "s19930528", "miyagise_kari")
                     connection.query("set character set utf8")
-                    connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '<table> #{@crawl} </table>' WHERE  `post_id` = '#{bot.article_id}' AND meta_key='votes';")
+                    connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '#{@time}<table> #{@crawl} </table>' WHERE  `post_id` = '#{bot.article_id}' AND meta_key='votes';")
                     connection.close
                 rescue => e#データが保存されない場合管理者にメールを送信
                   	PostMailer.post_email.deliver
