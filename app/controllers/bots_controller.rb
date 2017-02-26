@@ -26,7 +26,7 @@ class BotsController < ApplicationController
       @bots = Bot.all
       @q = Bot.search(params[:q])
       @bots = @q.result(distinct: true)
-      @time = Time.new.strftime("%Y-%m-%d　%H:%M:%S")
+      @time = Time.new.strftime("%Y-%m-%d　%H:%M")
     end
     
     def show
@@ -38,7 +38,7 @@ class BotsController < ApplicationController
         
         
         @i= 0
-        @time = Time.new.strftime("%Y-%m-%d　%H:%M:%S")
+        @time = Time.new.strftime("%Y-%m-%d　%H:%M")
         @bots.each do |bot|
             doc = Nokogiri::HTML(open("#{bot.url}"))#URLの指定
             @crawl = doc.xpath("#{bot.xpath}").inner_html#xpathの情報を抽出
