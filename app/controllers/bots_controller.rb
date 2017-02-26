@@ -46,7 +46,7 @@ class BotsController < ApplicationController
             
                ##Mysqlに抽出情報とpost_idを保存
                begin
-                    connection = Mysql::connect("153.120.105.36", "miyagise_sagae", "s19930528", "miyagise_kari")
+                    connection = Mysql::connect("153.120.105.36", "miyagise_sagae", "s19930528", "miyagise_senkyo_db")
                     connection.query("set character set utf8")
                     connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '#{@time}<table> #{@crawl} </table>' WHERE  `post_id` = '#{bot.article_id}' AND meta_key='votes';")
                     connection.close
