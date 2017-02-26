@@ -51,7 +51,7 @@ class BotsController < ApplicationController
                     connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '#{@time}<table> #{@crawl} </table>' WHERE  `post_id` = '#{bot.article_id}' AND meta_key='votes';")
                     connection.close
                 rescue => e#データが保存されない場合管理者にメールを送信
-                  	PostMailer.post_email.deliver
+                  	PostMailer.post_email(bot).deliver
                 end
                 
               if  @i > @bots.count then
