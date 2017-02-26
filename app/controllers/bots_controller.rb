@@ -38,7 +38,7 @@ class BotsController < ApplicationController
         
         
         @i= 0
-        @time = Time.new.strftime("%Y-%m-%d<br />%H:%M:%S")
+        @time = Time.new.strftime("%Y-%m-%d　%H:%M:%S")
         @bots.each do |bot|
             doc = Nokogiri::HTML(open("#{bot.url}"))#URLの指定
             @crawl = doc.xpath("#{bot.xpath}").inner_html#xpathの情報を抽出
