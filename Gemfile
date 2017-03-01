@@ -36,6 +36,9 @@ gem 'mysql'
 gem 'unicorn'
 
 gem 'whenever', :require => false
+
+gem 'administrate'
+gem 'bourbon'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

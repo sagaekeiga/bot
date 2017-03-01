@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :bots
+
+    root to: "bots#index"
+  end
+
   root 'bots#index'
   get 'bots/crawl', to: 'bots#crawl'
 
