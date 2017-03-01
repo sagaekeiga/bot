@@ -32,7 +32,7 @@ gem 'bootstrap3-datetimepicker-rails'
 
 gem "ransack"
 
-gem 'mysql'
+gem 'mysql2'
 gem 'unicorn'
 
 gem 'whenever', :require => false
