@@ -42,7 +42,6 @@ class BotsController < ApplicationController
             doc = Nokogiri::HTML(open("#{bot.url}"))#URLの指定
             @crawl = doc.xpath("#{bot.xpath}").inner_html#xpathの情報を抽出
             @i += 1
-            
                ##Mysqlに抽出情報とpost_idを保存
                begin
                     connection = Mysql::connect("153.120.105.36", "miyagise_sagae", "s19930528", "miyagise_senkyo_db")
