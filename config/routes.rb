@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'index/new'
+
+  get 'index/show'
+
+  get 'index/edit'
+
   namespace :admin do
     resources :bots
 

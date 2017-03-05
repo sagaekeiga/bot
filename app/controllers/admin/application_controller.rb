@@ -7,7 +7,7 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
     before_action :authenticate_admin
-    http_basic_authenticate_with name: "seijipress", password: "seijipress"
+
     def authenticate_admin
       # TODO Add authentication logic here.
     end

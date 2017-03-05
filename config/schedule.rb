@@ -19,17 +19,19 @@
 
 # Learn more: http://github.com/javan/whenever
 # ログの出力先を設定
+require File.expand_path(File.dirname(__FILE__) + "/environment")
+
 set :output, 'log/crontab.log'
 # production 環境で cron 実行
 env :PATH, '/home/ubuntu/.nvm/versions/node/v4.6.1/bin'
 set :environment, :development
  
 # 3時間毎に
-every 1.minute do # 1.minute 1.day 1.week 1.month 1.year is also supported
+every 1.minutes do # 1.minute 1.day 1.week 1.month 1.year is also supported
   command "echo 'hello, whenever world!'"
 end
 
-every 1.minute do # 1.minute 1.day 1.week 1.month 1.year is also supported
+every 1.minutes do # 1.minute 1.day 1.week 1.month 1.year is also supported
   # Rails 内のメソッド実行例
   runner 'Bot.test'
 end
