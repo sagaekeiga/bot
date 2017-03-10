@@ -23,7 +23,8 @@ set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 set :bundle_jobs, 4
 
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
-
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
