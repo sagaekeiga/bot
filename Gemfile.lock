@@ -114,6 +114,9 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     kgio (2.11.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -244,6 +247,8 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
+  kaminari-bootstrap
   momentjs-rails
   mysql
   mysql2

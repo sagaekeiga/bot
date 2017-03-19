@@ -40,6 +40,10 @@ gem 'whenever', :require => false
 
 gem 'administrate'
 gem 'bourbon'
+
+gem 'kaminari'
+gem 'kaminari-bootstrap'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

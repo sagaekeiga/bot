@@ -16,6 +16,11 @@ class BotDashboard < Administrate::BaseDashboard
     xpath: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    word1: Field::Text,
+    word2: Field::Text,
+    word3: Field::Text,
+    upper: Field::Text,
+    lower: Field::Text,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -52,6 +57,11 @@ class BotDashboard < Administrate::BaseDashboard
     :article_id,
     :date,
     :xpath,
+    :word1,
+    :word2,
+    :word3,
+    :upper,
+    :lower,
   ].freeze
 
   # Overwrite this method to customize how bots are displayed

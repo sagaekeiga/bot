@@ -6,6 +6,11 @@ class CreateBots < ActiveRecord::Migration
       t.integer :article_id
       t.date :date
       t.text :xpath
+      t.text :word1
+      t.text :word2
+      t.text :word3
+      t.text :upper
+      t.text :lower
 
       t.timestamps null: false
     end

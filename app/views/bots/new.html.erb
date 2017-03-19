@@ -1,4 +1,12 @@
 <%= form_for :bot, url: bots_path do |f| %>
+
+  <div class='input-group date datepicker col-xs-4'>
+   <%= f.text_field :date, class: 'form-control input-sm' %>
+   <span class="input-group-addon">
+       <span class="fa fa-calendar"></span>
+   </span>
+  </div>
+  
   <p>
     <%= f.label :name, "選挙名" %><br>
     <%= f.text_field :name, class: 'form-control input-sm', style: "width:150px;" %>
@@ -19,13 +27,33 @@
     <%= f.text_area :article_id, class: 'form-control input-sm', style: "width:50px;"%>
   </p>
   
-  <div class='input-group date datepicker col-xs-4'>
-   <%= f.text_field :date, class: 'form-control input-sm' %>
-   <span class="input-group-addon">
-       <span class="fa fa-calendar"></span>
-   </span>
-  </div>
 
+  
+  <p>
+    <%= f.label :word1, "条件ワード1" %><br>
+    <%= f.text_area :word1, class: 'form-control input-sm', style: "width:500px;", size: "10"%>
+  </p>
+  
+  <p>
+    <%= f.label :word2, "条件ワード2" %><br>
+    <%= f.text_area :word2, class: 'form-control input-sm', style: "width:500px;", size: "10"%>
+  </p>
+  
+  <p>
+    <%= f.label :word3, "条件ワード3" %><br>
+    <%= f.text_area :word3, class: 'form-control input-sm', style: "width:500px;", size: "10"%>
+  </p>
+  
+  <p>
+    <%= f.label :upper, "不要上段" %><br>
+    <%= f.text_area :upper, class: 'form-control input-sm', style: "width:500px;", size: "10"%>
+  </p>
+  
+  <p>
+    <%= f.label :lower, "不要下段" %><br>
+    <%= f.text_area :lower, class: 'form-control input-sm', style: "width:500px;", size: "10"%>
+  </p>
+  
   <p>
     <%= f.submit "登録", class: 'btn btn-primary' %>
   </p>

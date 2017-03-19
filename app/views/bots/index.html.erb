@@ -1,5 +1,5 @@
-<%= link_to "新規登録", new_bot_path %>
-<%= link_to "crawl", bots_crawl_path %>
+
+
 
 <%= @time %>
 
@@ -33,6 +33,11 @@
         <th scope="cols">記事ID</th>
         <th scope="cols">Xpath</th>
         <th scope="cols">開票日</th>
+        <th scope="cols">条件ワード1</th>
+        <th scope="cols">条件ワード2</th>
+        <th scope="cols">条件ワード3</th>
+        <th scope="cols">不要上段</th>
+        <th scope="cols">不要下段</th>
         <th scope="cols">管理</th>
     </tr>
     </thead>
@@ -47,6 +52,11 @@
     		<td><%= bot.article_id %></td>
     		<td><%= bot.xpath %></td>
     		<td><%= bot.date %></td>
+    		<td><%= bot.word1 %></td>
+    		<td><%= bot.word2 %></td>
+    		<td><%= bot.word3 %></td>
+    		<td><%= bot.upper.truncate(10) %></td>
+    		<td><%= bot.lower.truncate(10) %></td>
     		<td>
     		    <%= link_to "編集", edit_bot_path(bot.id) %>
     		    <%= link_to "削除", bot, method: :delete, data: { confirm: "本当に削除してもいいですか？" } %>
@@ -59,8 +69,10 @@
 </table>
 </div>
 
+<%= paginate @bots %>
 
-
-
-
-
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">Place sticky footer content here.</p>
+  </div>
+</footer>

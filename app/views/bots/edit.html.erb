@@ -20,7 +20,32 @@
        <span class="fa fa-calendar"></span>
    </span>
   </div>
+  <p>
+    <%= f.label :xpath, "xpath" %><br>
+    <%= f.text_area :xpath, class: 'form-control input-sm', style: "width:500px;"%>
+  </p>
+  <p>
+    <%= f.label :word1, "記事ID" %><br>
+    <%= f.text_area :word1, class: 'form-control input-sm', style: "width:50px;"%>
+  </p>
+  <p>
+    <%= f.label :word2, "記事ID" %><br>
+    <%= f.text_area :word2, class: 'form-control input-sm', style: "width:50px;"%>
+  </p>
+  <p>
+    <%= f.label :word3, "記事ID" %><br>
+    <%= f.text_area :word3, class: 'form-control input-sm', style: "width:50px;"%>
+  </p>
+
+  <p>
+    <%= f.label :upper, "記事ID" %><br>
+    <%= f.text_area :upper, class: 'form-control input-sm', style: "width:50px;"%>
+  </p>
   
+  <p>
+    <%= f.label :lower, "記事ID" %><br>
+    <%= f.text_area :lower, class: 'form-control input-sm', style: "width:50px;"%>
+  </p>
   <p>
     <%= f.submit "編集終了", class: 'btn btn-primary' %>
   </p>

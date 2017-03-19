@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   root 'bots#index'
   get 'bots/crawl', to: 'bots#crawl'
+  get 'bots/if_crawl', to: 'bots#if_crawl'
+  get 'bots/slice_crawl', to: 'bots#slice_crawl'
 
   resources :bots, only: [:create, :destroy, :show, :index, :new, :edit, :update]
 

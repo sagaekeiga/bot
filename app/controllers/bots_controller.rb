@@ -1,7 +1,7 @@
 class BotsController < ApplicationController
-
-
+# encoding: utf-8
     http_basic_authenticate_with name: "seijipress", password: "seijipress"
+    require 'kconv'
 
     def new
      @bot = Bot.new
@@ -22,9 +22,9 @@ class BotsController < ApplicationController
     end
     
     def index
-      @bots = Bot.all
+      @bots = Bot.page(params[:page])
       @q = Bot.search(params[:q])
-      @bots = @q.result(distinct: true)
+      @result = @q.result(distinct: true)
       @time = Time.new.strftime("%Y-%m-%d　%H:%M")
     end
     
@@ -34,7 +34,7 @@ class BotsController < ApplicationController
     
     def crawl
         @bots = Bot.all#登録した情報を全て取得
-        
+
         
         @i= 0
         @time = Time.new.strftime("%Y-%m-%d　%H:%M")
@@ -46,7 +46,7 @@ class BotsController < ApplicationController
                begin
                     connection = Mysql::connect("153.120.105.36", "miyagise_sagae", "s19930528", "miyagise_senkyo_db")
                     connection.query("set character set utf8")
-                    connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '#{@time}<table> #{@crawl} </table>' WHERE  `post_id` = '#{bot.article_id}' AND meta_key='votes';")
+                    connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '#{@time}<table> #{@crawl.encode("UTF-8")} </table>' WHERE  `post_id` = '#{bot.article_id}' AND meta_key='votes';")
                     connection.close
                 rescue => e#データが保存されない場合管理者にメールを送信
                   	PostMailer.post_email(bot).deliver
@@ -55,11 +55,83 @@ class BotsController < ApplicationController
               if  @i > @bots.count then
                 break
               end
-  
             doc.delete(Nokogiri::HTML(open("#{bot.url}")))#URLの削除
-            @crawl.clear#xpathの情報を削除
+            @crawl.clear#xpathの情報を削除  
+
         end
             
+    end
+    
+    def if_crawl
+        @bots = Bot.all#登録した情報を全て取得
+        @i= 0
+        @time = Time.new.strftime("%Y-%m-%d　%H:%M")
+        @bots.each do |bot|
+            doc = Nokogiri::HTML(open("#{bot.url}"))#URLの指定
+            
+
+            doc.css('table').each do |crawl|
+                @crawl = crawl.inner_html.encode("UTF-8")
+                 if @crawl.encode("UTF-8").include?(bot.word1) && @crawl.encode("UTF-8").include?(bot.word2) && @crawl.encode("UTF-8").include?(bot.word3)
+                     @if_crawl = crawl.inner_html.encode("UTF-8")
+                       begin
+                            connection = Mysql::connect("153.120.105.36", "miyagise_sagae", "s19930528", "miyagise_senkyo_db")
+                            connection.query("set character set utf8")
+                            connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '#{@time}<table> #{@if_crawl.encode("UTF-8")} </table>' WHERE  `post_id` = '#{bot.article_id}' AND meta_key='votes';")
+                            connection.close
+                        rescue => e#データが保存されない場合管理者にメールを送信
+                          	PostMailer.post_email(bot).deliver
+                        end
+                    @if_crawl.clear#xpathの情報を削除
+                 end
+                @crawl.clear#xpathの情報を削除
+            end
+            
+              @i += 1
+              if  @i > @bots.count then
+                break
+              end
+              
+            doc.delete(Nokogiri::HTML(open("#{bot.url}")))#URLの削除
+
+
+        end
+            
+    end
+    
+    def slice_crawl
+        @bots = Bot.all#登録した情報を全て取得
+        @i= 0
+        @time = Time.new.strftime("%Y-%m-%d　%H:%M")
+        @bots.each do |bot|
+            p "a"
+            @doc = Nokogiri::HTML(open("#{bot.url}"), nil, 'UTF-8').inner_html.gsub(" ", "")#URLの指定
+            p @index_doc = @doc.index("table") - 1
+            p @end_doc = @doc.rindex("table>") + 5
+            @slice_crawl = @doc.gsub("#{bot.upper}", '').strip
+
+            #doc.css('table').each do |crawl|
+                #@crawl = crawl.inner_html.encode("UTF-8")
+                 #if @crawl.include?(bot.word1) && @crawl.include?(bot.word2) && @crawl.include?(bot.word3)
+                     #@if_crawl = crawl.inner_html.encode("UTF-8")
+                       #begin
+                            #connection = Mysql::connect("153.120.105.36", "miyagise_sagae", "s19930528", "miyagise_senkyo_db")
+                            #connection.query("set character set utf8")
+                            #connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '#{@time}<table> #{@if_crawl} </table>' WHERE  `post_id` = '#{bot.article_id}' AND meta_key='votes';")
+                            #connection.close
+                        #rescue => e#データが保存されない場合管理者にメールを送信
+                          	#PostMailer.post_email(bot).deliver
+                        #end
+                    #@if_crawl.clear#xpathの情報を削除
+                 #end
+                #@crawl.clear#xpathの情報を削除
+            #end
+            
+              @i += 1
+              if  @i > @bots.count then
+                break
+              end
+        end
     end
     
     def edit
@@ -75,6 +147,6 @@ class BotsController < ApplicationController
       private
       
         def bot_params
-          params.require(:bot).permit(:name, :url, :article_id, :date, :xpath)
+          params.require(:bot).permit(:name, :url, :article_id, :date, :xpath, :word1, :word2, :word3, :upper, :lower)
         end
 end
