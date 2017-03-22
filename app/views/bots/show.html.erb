@@ -1,0 +1,47 @@
+ <%= render 'layouts/show_header' %><br><br><br><br>
+    <table class="type07 form">
+        <tbody>
+            <tr>
+                <th scope="row">ID</th>
+        		<td><%= @bot.id %></td>
+            </tr>
+    
+            <tr>
+                <th scope="cols">選挙名</th>
+        		<td><%= link_to"#{@bot.name}", @bot, { :target => "_blank"}  %></td>
+        	</tr>
+        	<tr>
+                <th scope="cols">URL</th>
+        		<td><%= link_to "#{@bot.url}", @bot.url, { :target => "_blank"} %></td>
+        	</tr>
+        	<tr>
+                <th scope="cols">記事ID</th>
+        		<td><%= @bot.article_id %></td>
+        	</tr>
+        	<tr>
+                <th scope="cols">Xpath</th>
+        		<td><%= @bot.xpath %></td>
+        	</tr>
+        	<tr>
+                <th scope="cols">開票日</th>
+        		<td><%= @bot.date %></td>
+        	</tr>
+        	<tr>
+                <th scope="cols">条件ワード1</th>
+        		<td><%= @bot.word1 %></td>
+        	</tr>
+        	<tr>
+                <th scope="cols">条件ワード2</th>
+        		<td><%= @bot.word2 %></td>
+        	</tr>
+        	<tr>
+                <th scope="cols">条件ワード3</th>
+        		<td><%= @bot.word3 %></td>
+        	</tr>
+        	<tr>
+                <th scope="cols">上段</th>
+        		<td><%= @bot.upper %></td>
+            </tr>
+            
+        </tbody>
+    </table>

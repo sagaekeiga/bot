@@ -1,4 +1,17 @@
-<h1>if_crawls</h1>
-<%= @if_crawl %>
-<h1>crawls</h1>
-<%= @crawl %>
+<%= render 'layouts/result_header' %><br><br><br><br>
+
+<div class="form align">
+    <div class="jumbotron font">
+        送信に成功しました！
+    </div>
+    
+    送った内容
+    <div class="jumbotron padding height">
+        <%= "<table>" + @if_crawl.encode("UTF-8") + "</table>" %>
+    </div>
+    
+    プレビュー
+    <div class="jumbotron">
+        <%= simple_format("<table>" + @if_crawl.encode("UTF-8") + "</table>") %>
+    </div>
+</div>

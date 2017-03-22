@@ -1,5 +1,16 @@
-<h1>crawls</h1>
-<%= @crawl.encode("UTF-8") %>
-
-<h1>doc</h1>
-<%= @doc %>
+<%= render 'layouts/result_header' %><br><br><br><br>
+<div class="form align">
+    <div class="jumbotron font">
+        送信に成功しました！
+    </div>
+    
+    送った内容
+    <div class="jumbotron padding height">
+        <%= @crawl.encode("UTF-8") %>
+    </div>
+    
+    プレビュー
+    <div class="jumbotron">
+        <%= simple_format("<table>" + @crawl.encode("UTF-8") + "</table>") %>
+    </div>
+</div>

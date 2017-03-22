@@ -1,52 +1,50 @@
-<%= form_for(@bot) do |f| %>
-  <p>
-    <%= f.label :name, "選挙名" %><br>
-    <%= f.text_field :name, class: 'form-control input-sm', style: "width:150px;" %>
-  </p>
- 
-  <p>
-    <%= f.label :url, "URL" %><br>
-    <%= f.text_area :url, class: 'form-control input-sm', style: "width:500px;", size: "10"%>
-  </p>
+<%= render 'layouts/show_header' %><br><br><br><br>
+<div class="form">
+  <%= form_for(@bot) do |f| %>
+    <p>
+      <%= f.label :name, "選挙名" %><br>
+      <%= f.text_field :name, class: 'form-control input-sm', style: "width:500px;" %>
+    </p>
+   
+    <p>
+      <%= f.label :url, "URL" %><br>
+      <%= f.text_area :url, class: 'form-control input-sm', style: "width:500px;", size: "10"%>
+    </p>
+    
+    <p>
+      <%= f.label :article_id, "記事ID" %><br>
+      <%= f.text_area :article_id, class: 'form-control input-sm', style: "width:500px;"%>
+    </p>
+    
+    <div class='input-group date datepicker col-xs-2'>
+     <%= f.text_field :date, class: 'form-control input-sm', style: "width:500px;"%>
+     <span class="input-group-addon">
+         <span class="fa fa-calendar"></span>
+     </span>
+    </div>
+    <p>
+      <%= f.label :xpath, "xpath" %><br>
+      <%= f.text_area :xpath, class: 'form-control input-sm', style: "width:500px;"%>
+    </p>
+    <p>
+      <%= f.label :word1, "文字条件1" %><br>
+      <%= f.text_area :word1, class: 'form-control input-sm', style: "width:500px;"%>
+    </p>
+    <p>
+      <%= f.label :word2, "文字条件2" %><br>
+      <%= f.text_area :word2, class: 'form-control input-sm', style: "width:500px;"%>
+    </p>
+    <p>
+      <%= f.label :word3, "文字条件3" %><br>
+      <%= f.text_area :word3, class: 'form-control input-sm', style: "width:500px;"%>
+    </p>
   
-  <p>
-    <%= f.label :article_id, "記事ID" %><br>
-    <%= f.text_area :article_id, class: 'form-control input-sm', style: "width:50px;"%>
-  </p>
-  
-  <div class='input-group date datepicker col-xs-2'>
-   <%= f.text_field :date, class: 'form-control input-sm' %>
-   <span class="input-group-addon">
-       <span class="fa fa-calendar"></span>
-   </span>
-  </div>
-  <p>
-    <%= f.label :xpath, "xpath" %><br>
-    <%= f.text_area :xpath, class: 'form-control input-sm', style: "width:500px;"%>
-  </p>
-  <p>
-    <%= f.label :word1, "記事ID" %><br>
-    <%= f.text_area :word1, class: 'form-control input-sm', style: "width:50px;"%>
-  </p>
-  <p>
-    <%= f.label :word2, "記事ID" %><br>
-    <%= f.text_area :word2, class: 'form-control input-sm', style: "width:50px;"%>
-  </p>
-  <p>
-    <%= f.label :word3, "記事ID" %><br>
-    <%= f.text_area :word3, class: 'form-control input-sm', style: "width:50px;"%>
-  </p>
-
-  <p>
-    <%= f.label :upper, "記事ID" %><br>
-    <%= f.text_area :upper, class: 'form-control input-sm', style: "width:50px;"%>
-  </p>
-  
-  <p>
-    <%= f.label :lower, "記事ID" %><br>
-    <%= f.text_area :lower, class: 'form-control input-sm', style: "width:50px;"%>
-  </p>
-  <p>
-    <%= f.submit "編集終了", class: 'btn btn-primary' %>
-  </p>
-<% end %>
+    <p>
+      <%= f.label :upper, "上段キーワード" %><br>
+      <%= f.text_area :upper, class: 'form-control input-sm', style: "width:500px;"%>
+    </p>
+    <p>
+      <%= f.submit "編集終了", class: 'btn btn-primary' %>
+    </p>
+  <% end %>
+</div>

@@ -1,0 +1,14 @@
+<%= render 'layouts/show_header' %><br><br><br><br>
+
+
+<div class="form align">
+    取得した内容
+    <div class="jumbotron padding height">
+        <%= @crawl %>
+    </div>
+    
+    プレビュー
+    <div class="jumbotron">
+        <%= simple_format(@crawl)%>
+    </div>
+</div>

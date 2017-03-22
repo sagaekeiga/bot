@@ -36,8 +36,7 @@
         <th scope="cols">条件ワード1</th>
         <th scope="cols">条件ワード2</th>
         <th scope="cols">条件ワード3</th>
-        <th scope="cols">不要上段</th>
-        <th scope="cols">不要下段</th>
+        <th scope="cols">上段</th>
         <th scope="cols">管理</th>
     </tr>
     </thead>
@@ -47,8 +46,8 @@
 
         <tr>
             <th scope="row"><%= bot.id %></th>
-    		<td><%= bot.name %></td>
-    		<td><%= link_to "#{bot.url}", bot.url %></td>
+    		<td><%= link_to"#{bot.name}", bot, { :target => "_blank"}  %></td>
+    		<td><%= link_to "#{bot.url.truncate(20)}", bot.url, { :target => "_blank"} %></td>
     		<td><%= bot.article_id %></td>
     		<td><%= bot.xpath %></td>
     		<td><%= bot.date %></td>
@@ -56,7 +55,6 @@
     		<td><%= bot.word2 %></td>
     		<td><%= bot.word3 %></td>
     		<td><%= bot.upper.truncate(10) %></td>
-    		<td><%= bot.lower.truncate(10) %></td>
     		<td>
     		    <%= link_to "編集", edit_bot_path(bot.id) %>
     		    <%= link_to "削除", bot, method: :delete, data: { confirm: "本当に削除してもいいですか？" } %>
@@ -70,9 +68,3 @@
 </div>
 
 <%= paginate @bots %>
-
-<footer class="footer">
-  <div class="container">
-    <p class="text-muted">Place sticky footer content here.</p>
-  </div>
-</footer>

@@ -1,3 +1,16 @@
-<h1>doc</h1>
-<% require 'kconv' %>
-<%= @slice_crawl %>
+<%= render 'layouts/result_header' %><br><br><br><br>
+<div class="form align">
+    <div class="jumbotron font">
+        送信に成功しました！
+    </div>
+    
+    送った内容
+    <div class="jumbotron padding height">
+        <%= @slice_crawl.encode("UTF-8") %>
+    </div>
+    
+    プレビュー
+    <div class="jumbotron">
+        <%= simple_format(@slice_crawl.encode("UTF-8")) %>
+    </div>
+</div>

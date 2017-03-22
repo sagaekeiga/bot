@@ -16,7 +16,15 @@ Rails.application.routes.draw do
   get 'bots/if_crawl', to: 'bots#if_crawl'
   get 'bots/slice_crawl', to: 'bots#slice_crawl'
 
-  resources :bots, only: [:create, :destroy, :show, :index, :new, :edit, :update]
+  resources :bots, only: [:create, :destroy, :show, :index, :new, :edit, :update] do
+    collection do
+      get 'test'
+      get 'test_crawl'
+      get 'test_if_crawl'
+      get 'test_slice_crawl'
+      get 'failure'
+    end
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

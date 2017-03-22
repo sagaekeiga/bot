@@ -1,6 +1,4 @@
 class Bot < ApplicationRecord
-    
-    def test
-        print "1"
-    end
+  validates :article_id, presence: true, length: { maximum: 10 }
+  validates :url, presence: true
 end

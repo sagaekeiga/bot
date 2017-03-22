@@ -42,24 +42,52 @@ table.type07 td {
 }
 
 
-//footer
 
-.footer {
-  position: absolute;
-  bottom: 0;
+//edit & new
+
+.form {
+  height: 500px;
+  width: 500px;
+	margin: 0 auto;
+  word-break: break-all;
+}
+
+
+//test
+
+.border {
   width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
+  box-shadow: 0 1px #777;
 }
-body > .container {
-  padding: 60px 15px 0;
+
+
+//本番
+.align {
+  text-align: center;
 }
-.container .text-muted {
-  margin: 20px 0;
+
+.font {
+  font-size: 20px;
 }
- 
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
+
+.msg {
+  text-align: center;
+  width: 500px;
+	margin: 0 auto;
+}
+
+.error {
+  height: 200px;
+  width: 500px;
+	margin: 0 auto;
+}
+
+.padding {
+  padding: 20px;
+}
+
+.height {
+ min-height: 100px;
+ height: auto !important;
+ height: 50px;
 }
