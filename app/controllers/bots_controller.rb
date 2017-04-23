@@ -60,7 +60,7 @@ class BotsController < ApplicationController
              if @crawl.encode("UTF-8").include?(@bot.word1) && @crawl.encode("UTF-8").include?(@bot.word2) && @crawl.encode("UTF-8").include?(@bot.word3)
                  @if_crawl = crawl.inner_html.encode("UTF-8")
                     begin
-                         connection = Mysql::connect("153.120.105.36", "miyagise_sagae", "s19930528", "miyagise_senkyo_db")
+                         connection = Mysql::connect("153.127.212.231", "miyagise_sagae", "s19930528", "miyagise_senkyo_db")
                          connection.query("set character set utf8")
                          connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '#{@time}<table> #{@if_crawl.encode("UTF-8")} </table>' WHERE  `post_id` = '#{@bot.article_id}' AND meta_key='votes';")
                          connection.close
@@ -81,7 +81,7 @@ class BotsController < ApplicationController
         @table_doc = @slice_crawl_pre.index("table>") + 5
         @slice_crawl = @slice_crawl_pre.slice(0..@table_doc)
         begin
-             connection = Mysql::connect("153.120.105.36", "miyagise_sagae", "s19930528", "miyagise_senkyo_db")
+             connection = Mysql::connect("153.127.212.231", "miyagise_sagae", "s19930528", "miyagise_senkyo_db")
              connection.query("set character set utf8")
              connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '#{@time}#{@slice_crawl.encode("UTF-8")}' WHERE  `post_id` = '#{@bot.article_id}' AND meta_key='votes';")
              connection.close
