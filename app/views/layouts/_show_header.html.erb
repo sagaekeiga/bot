@@ -13,6 +13,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><%= link_to "ホームへ", root_path %></li>
         <li><%= link_to "新規登録", new_bot_path %></li>
+        <li><%= link_to "詳細ページ", @bot %></li>
         <li><%= link_to "crawl", bots_crawl_path(id: @bot.id) %></li>
         <li><%= link_to "条件crawl", bots_if_crawl_path(id: @bot.id) %></li>
         <li><%= link_to "抜粋crawl", bots_slice_crawl_path(id: @bot.id) %></li>

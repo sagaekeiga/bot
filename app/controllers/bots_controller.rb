@@ -39,7 +39,7 @@ class BotsController < ApplicationController
         doc = Nokogiri::HTML(open("#{@bot.url}"))
         @crawl = doc.xpath("#{@bot.xpath}").inner_html
         begin
-             connection = Mysql::connect("153.120.105.36", "miyagise_sagae", "s19930528", "miyagise_senkyo_db")
+             connection = Mysql::connect("153.127.212.231", "miyagise_sagae", "s19930528", "miyagise_senkyo_db")
              connection.query("set character set utf8")
              connection.query("UPDATE  `se_postmeta` SET  `meta_value` =  '#{@time}<table> #{@crawl.encode("UTF-8")} </table>' WHERE  `post_id` = '#{@bot.article_id}' AND meta_key='votes';")
              connection.close
