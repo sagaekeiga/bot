@@ -13,7 +13,7 @@
     <th>管理</th>
   </tr></thead>
   <tbody>
-    <% @results.each do |bot| %>
+    <% @bots.each do |bot| %>
     <tr>
      <td><%= bot.id %></td>
      <td><%= link_to"#{bot.name}", bot, { :target => "_blank"}  %></td>

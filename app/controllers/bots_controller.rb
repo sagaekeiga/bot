@@ -4,6 +4,7 @@ class BotsController < ApplicationController
     require 'kconv'
 
     def new
+     @q = Bot.search(params[:q])
      @bot = Bot.new
     end
 
@@ -21,18 +22,24 @@ class BotsController < ApplicationController
         redirect_to root_path
     end
     
+    def delete_all
+        @bots = Bot.where.not(id: 1)
+        @bots.delete_all
+        redirect_to root_path
+    end
+    
     def index
-      @bots = Bot.page(params[:page])
       @q = Bot.search(params[:q])
-      @result = @q.result(distinct: true)
-      @time = Time.new.strftime("%Y-%m-%d　%H:%M")
+      @results = @q.result(distinct: true).page(params[:page])
     end
     
     def show
+      @q = Bot.search(params[:q])
       @bot = Bot.find(params[:id])
     end
     
     def crawl
+        @q = Bot.search(params[:q])
         @bot = Bot.find(params[:id])
         
         @time = Time.new.strftime("%Y-%m-%d　%H:%M")
@@ -51,6 +58,7 @@ class BotsController < ApplicationController
     end
     
     def if_crawl
+        @q = Bot.search(params[:q])
         @bot = Bot.find(params[:id])
         @time = Time.new.strftime("%Y-%m-%d　%H:%M")
         doc = Nokogiri::HTML(open("#{@bot.url}"))#URLの指定
@@ -73,6 +81,7 @@ class BotsController < ApplicationController
     end
     
     def slice_crawl
+        @q = Bot.search(params[:q])
         @bot = Bot.find(params[:id])
         @doc = Nokogiri::HTML(open("#{@bot.url}")).inner_html.encode("UTF-8")#URLの指定
         @index_doc = @doc.index("#{@bot.upper}")
@@ -92,11 +101,13 @@ class BotsController < ApplicationController
     end
     
     def test
+        @q = Bot.search(params[:q])
         @bot = Bot.find(params[:id])
         @doc = Nokogiri::HTML(open("#{@bot.url}")).inner_html.encode("UTF-8")#URLの指定
     end
     
     def edit
+        @q = Bot.search(params[:q])
         @bot = Bot.find(params[:id])
     end
     
@@ -107,12 +118,14 @@ class BotsController < ApplicationController
     end
     
     def test_crawl
+        @q = Bot.search(params[:q])
         @bot = Bot.find(params[:id])
         doc = Nokogiri::HTML(open("#{@bot.url}"))
         @crawl = doc.xpath("#{@bot.xpath}").inner_html
     end
     
     def test_if_crawl
+        @q = Bot.search(params[:q])
         @bot = Bot.find(params[:id])
         doc = Nokogiri::HTML(open("#{@bot.url}"))
         doc.css('table').each do |crawl|
@@ -124,6 +137,7 @@ class BotsController < ApplicationController
     end
     
     def test_slice_crawl
+        @q = Bot.search(params[:q])
         @bot = Bot.find(params[:id])
         @doc = Nokogiri::HTML(open("#{@bot.url}")).inner_html.encode("UTF-8")#URLの指定
         @index_doc = @doc.index("#{@bot.upper}")
@@ -134,6 +148,7 @@ class BotsController < ApplicationController
     end
     
     def failure
+        @q = Bot.search(params[:q])
         @bot = Bot.find(params[:id])
         @error = params[:error]
     end

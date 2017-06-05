@@ -1,21 +1,11 @@
 Rails.application.routes.draw do
-  get 'index/new'
-
-  get 'index/show'
-
-  get 'index/edit'
-
-  namespace :admin do
-    resources :bots
-
-    root to: "bots#index"
-  end
-
-  root 'bots#index'
+  
+  root 'pages#index'
   get 'bots/crawl', to: 'bots#crawl'
   get 'bots/if_crawl', to: 'bots#if_crawl'
   get 'bots/slice_crawl', to: 'bots#slice_crawl'
-
+  get 'bots/delete_all', to: 'bots#delete_all'
+  
   resources :bots, only: [:create, :destroy, :show, :index, :new, :edit, :update] do
     collection do
       get 'test'

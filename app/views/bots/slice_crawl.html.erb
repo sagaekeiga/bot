@@ -1,16 +1,14 @@
-<%= render 'layouts/result_header' %><br><br><br><br>
-<div class="form align">
-    <div class="jumbotron font">
-        送信に成功しました！
-    </div>
-    
-    送った内容
-    <div class="jumbotron padding height">
-        <%= @slice_crawl.encode("UTF-8") %>
-    </div>
-    
-    プレビュー
-    <div class="jumbotron">
-        <%= simple_format(@slice_crawl.encode("UTF-8")) %>
-    </div>
+<%= render 'layouts/result_header' %>
+<div class="ui success message">
+  <div class="header">
+    送信に成功しました！
+  </div>
+</div>
+<div class="ui pink message">
+    <div class="header">送った内容</div>
+    <%= @slice_crawl.encode("UTF-8") %>
+</div>
+<div class="ui green message">
+    <div class="header">プレビュー</div>
+    <%= qiita_markdown(@slice_crawl.encode("UTF-8")).html_safe %>
 </div>

@@ -1,20 +1,15 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">政治プレス</a>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><%= link_to "ホームへ", root_path %></li>
-        <li><%= link_to "新規登録", new_bot_path %></li>
-        <li><%= link_to "詳細ページ", @bot %></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
-</nav>
+<div class="ui segment">
+  <h3 class="ui right aligned header">
+    <%= link_to "HOME", root_path, { :class => "ui yellow basic button" } %>
+    <%= link_to "新規登録", new_bot_path, { :class => "ui primary basic button" } %>
+    <%= link_to "詳細ページ", @bot, { :class => "ui orange basic button" } %>
+  </h3>
+  <h3 class="ui center aligned header">
+    <%= search_form_for @q do |f| %>
+      <div class="ui fluid action input">
+      　<%= f.search_field :name_cont, class: :"", :placeholder => "選挙名"%>
+        <%= f.submit "検索", class: "ui teal right labeled icon button" %>
+      </div>
+    <% end %>
+  </h3>
+</div>

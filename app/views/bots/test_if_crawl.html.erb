@@ -1,13 +1,10 @@
-<%= render 'layouts/show_header' %><br><br><br><br>
+<%= render 'layouts/show_header' %>
 
-<div class="form align">
-    取得した内容
-    <div class="jumbotron padding height">
-        <%= @if_crawl %>
-    </div>
-    
-    プレビュー
-    <div class="jumbotron">
-        <%= simple_format(@if_crawl)%>
-    </div>
+<div class="ui pink message">
+    <div class="header">取得した内容</div>
+    <%= @if_crawl %>
+</div>
+<div class="ui green message">
+    <div class="header">プレビュー</div>
+    <%= qiita_markdown("<table>" + @if_crawl.encode("UTF-8") + "</table>").html_safe %>
 </div>

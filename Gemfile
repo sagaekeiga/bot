@@ -13,9 +13,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'bootstrap-sass'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -26,23 +26,20 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "anemone"
 gem "nokogiri"
 
-gem 'momentjs-rails'
-gem 'bootstrap3-datetimepicker-rails'
 
 
 gem "ransack"
 
 gem 'mysql2'
-gem 'mysql'
 gem 'unicorn'
+
+gem 'qiita-markdown'
+gem 'github-linguist'
 
 gem 'whenever', :require => false
 
-gem 'administrate'
-gem 'bourbon'
 
-gem 'kaminari'
-gem 'kaminari-bootstrap'
+gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
