@@ -27,6 +27,7 @@
               <div class="ui segment">
                 <p><%= task.deadline.strftime('%H時%M分') %></p>
                 <p><%= task.name %></p>
+                <%= link_to "削除", task, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
               </div>
             <% end %>
         </div>

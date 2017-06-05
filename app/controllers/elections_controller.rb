@@ -25,6 +25,14 @@ class ElectionsController < ApplicationController
       @task = Task.new
     end
     
+    def delete_all
+      @elections = Election.all
+      @tasks = Task.all
+      @elections.delete_all
+      @tasks.delete_all
+      redirect_to elections_path
+    end
+    
     def show
       @election = Election.find(params[:id])
     end
