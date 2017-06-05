@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   
+
   root 'pages#index'
   get 'bots/crawl', to: 'bots#crawl'
   get 'bots/if_crawl', to: 'bots#if_crawl'
   get 'bots/slice_crawl', to: 'bots#slice_crawl'
   get 'bots/delete_all', to: 'bots#delete_all'
   
+  resources :elections
+  resources :tasks, only: [:create, :destroy, :update]
   resources :bots, only: [:create, :destroy, :show, :index, :new, :edit, :update] do
     collection do
       get 'test'

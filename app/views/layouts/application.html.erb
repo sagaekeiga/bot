@@ -11,9 +11,15 @@
 </head>
 <body>
  
-<% if controller.action_name == "index" || controller.action_name == "new"%>
- <%= render 'layouts/header' %><br><br><br><br>
+<% if controller.action_name == "index" || controller.action_name == "new" %>
+ <% if controller.controller_name != "elections" %>
+  <%= render 'layouts/header' %>
+ <% end %>
 <% end %>
+
+ <% if controller.controller_name == "elections" %>
+  <%= render 'layouts/elections_header' %>
+ <% end %>
 
 <%= yield %>
 

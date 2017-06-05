@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217160352) do
+ActiveRecord::Schema.define(version: 20170605142239) do
 
   create_table "bots", force: :cascade do |t|
     t.text     "name"
@@ -23,6 +23,21 @@ ActiveRecord::Schema.define(version: 20170217160352) do
     t.text     "word3"
     t.text     "upper"
     t.text     "lower"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "elections", force: :cascade do |t|
+    t.text     "name"
+    t.text     "description"
+    t.text     "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.text     "name"
+    t.time     "deadline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

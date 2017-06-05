@@ -1,0 +1,67 @@
+<div class="ui internally celled grid">
+  <div class="row">
+    <div class="four wide column">
+        <div class="ui large violet message">
+          タスク一覧
+        </div>
+        
+        <div class="ui raised segment">
+            <%= form_for(@task, url: tasks_path(@task), html: {method: 'post', class: 'ui form'}) do |f| %>
+              <div class="field">
+                <label>タスク名</label>
+                <%= f.text_field :name, class: "" %>
+              </div>
+              
+             <div class="two fields">
+                <%= f.time_select :deadline, {}, class: "" %>
+              </div>
+              
+              <div class="actions">
+                <%= f.submit "追加", class: 'ui button'%>
+              </div>
+            <% end %>
+        </div>
+
+        <div class="ui segments">
+            <% @tasks.each do |task| %>
+              <div class="ui segment">
+                <p><%= task.deadline.strftime('%H時%M分') %></p>
+                <p><%= task.name %></p>
+              </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="three wide column">
+        <div class="ui large brown message">
+          今日の選挙一覧
+        </div>
+        <%= render 'elections/array', elections: @elections, id: 0, resource: @election %>
+    </div>
+    
+    
+    <div class="three wide column">
+        <div class="ui large green message">
+          待機中の選挙
+        </div>
+        <%= render 'elections/array', elections: @elections, id: 1 %>
+    </div>
+
+    
+    <div class="three wide column">
+        <div class="ui large orange message">
+          稼働中の選挙
+        </div>
+        <%= render 'elections/array', elections: @elections, id: 2 %>
+    </div>
+    
+    
+    <div class="three wide column">
+        <div class="ui large black message">
+          終了した選挙
+        </div>
+        <%= render 'elections/array', elections: @elections, id: 3 %>
+    </div>
+  </div>
+</div>
+
+
