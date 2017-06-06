@@ -1,5 +1,25 @@
 <div class="ui internally celled grid">
   <div class="row">
+    <div class="sixteen wide column">
+      <div class="ui segment">
+            <div class="ui accordion">
+                <div class="active title">
+                  <i class="dropdown icon"></i>
+                  選挙登録
+                </div>
+                <div class="word-break content">
+                  <%= render 'elections/new' %>
+                </div>
+            </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<div class="ui internally celled grid">
+  <div class="row">
     <div class="four wide column">
         <div class="ui large violet message">
           タスク一覧
@@ -21,7 +41,6 @@
               </div>
             <% end %>
         </div>
-
         <div class="ui segments">
             <% @tasks.each do |task| %>
               <div class="ui segment">
@@ -34,7 +53,7 @@
     </div>
     <div class="three wide column">
         <div class="ui large brown message">
-          今日の選挙一覧
+          今日の選挙一覧　 <%= @elections.count %>
         </div>
         <%= render 'elections/array', elections: @elections, id: 0, resource: @election %>
     </div>
@@ -42,27 +61,31 @@
     
     <div class="three wide column">
         <div class="ui large green message">
-          待機中の選挙
+          待機中の選挙　 <%= @waited_elections.count %>
         </div>
-        <%= render 'elections/array', elections: @elections, id: 1 %>
+        <%= render 'elections/array', elections: @waited_elections, id: 1 %>
     </div>
 
     
     <div class="three wide column">
         <div class="ui large orange message">
-          稼働中の選挙
+          稼働中の選挙　 <%= @doing_elections.count %>
         </div>
-        <%= render 'elections/array', elections: @elections, id: 2 %>
+        <%= render 'elections/array', elections: @doing_elections, id: 1 %>
     </div>
     
     
     <div class="three wide column">
         <div class="ui large black message">
-          終了した選挙
+          終了した選挙　 <%= @closed_elections.count %>
         </div>
-        <%= render 'elections/array', elections: @elections, id: 3 %>
+        <%= render 'elections/array', elections: @closed_elections, id: 1 %>
     </div>
   </div>
 </div>
 
+
+<script>
+$('.ui.accordion').accordion();
+</script>
 

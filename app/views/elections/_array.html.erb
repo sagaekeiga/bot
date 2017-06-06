@@ -3,34 +3,44 @@
 <div class="ui card">
   <div class="content">
     <div class="header"><%= link_to"#{election.name}", election %></div>
+    <div class="meta"><%= "ID:" + election.article_id %></div>
   </div>
+
   
-  <div class="content">
+  <div class="extra content">
     <div class="ui small feed">
       <div class="event">
         <div class="content">
-          <div class="summary word-break">
-             <%= election.description.truncate(100) if !election.description.nil? %>
-          </div>
+            <div class="ui accordion">
+                <div class="active title">
+                  <i class="dropdown icon"></i>
+                  詳細
+                </div>
+                <div class="word-break content">
+                  <%= election.description.truncate(100) if !election.description.nil? %>
+                  <div class="six wide field"><br/>
+                        <%= form_for(election, url: election_path(election), html: {method: 'patch', class: 'ui form'}) do |f| %>
+                           <div class="three fields">
+                              <div class="field">
+                                  <%= f.select :status, options_for_select(["待機", "稼働", "終了"]), {}, { class: 'ui fluid dropdown' } %>
+                              </div>
+                              <div class="field">
+                                  <%= f.submit "変更", class: 'ui blue basic button'%>
+                              </div>
+                            </div>
+                        <% end %>
+                  </div>
+                  <%= link_to "編集", edit_election_path(election.id), { :class => "ui olive basic button" } %>
+                  <%= link_to "削除", election, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
+                </div>
+            </div>
         </div>
       </div>
     </div>
   </div>
   
   <div class="extra content">
-    <div class="six wide field">
-          <%= form_for(election, url: election_path(election), html: {method: 'patch', class: 'ui form'}) do |f| %>
-             <div class="two fields">
-                <div class="field">
-                    <%= f.select :status, options_for_select(["待機", "稼働", "終了"]), {}, { class: 'ui fluid dropdown' } %>
-                </div>
-                <div class="field">
-                    <%= f.submit "変更", class: 'ui blue basic button'%>
-                </div>
-              </div>
-          <% end %>
-    </div>
-    
+
     <% if election.status == "稼働" %>
         <div class="ui orange label"><%= election.status %></div>
     <% elsif election.status == "待機" %>
@@ -39,9 +49,8 @@
         <div class="ui grey label"><%= election.status %></div>
     <% end %>
     
-    <br/><br/>
-    <%= link_to "編集", edit_election_path(election.id), { :class => "ui olive basic button" } %>
-    <%= link_to "削除", election, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
+    <br/>
+
   </div>
 </div>
 <% end %>
@@ -50,126 +59,43 @@
 
 <% if id == 1 %>
 <% elections.each do |election| %>
-<% if election.status == "待機" %>
 <div class="ui card">
   <div class="content">
     <div class="header"><%= link_to"#{election.name}", election %></div>
+    <div class="meta"><%= "ID:" + election.article_id %></div>
   </div>
   
-  <div class="content">
+  <div class="extra content">
     <div class="ui small feed">
       <div class="event">
         <div class="content">
-          <div class="summary word-break">
-             <%= election.description.truncate(100) if !election.description.nil? %>
-          </div>
+            <div class="ui accordion">
+                <div class="active title">
+                  <i class="dropdown icon"></i>
+                  詳細
+                </div>
+                <div class="word-break content">
+                  <%= election.description.truncate(100) if !election.description.nil? %>
+                  <div class="six wide field"><br/>
+                        <%= form_for(election, url: election_path(election), html: {method: 'patch', class: 'ui form'}) do |f| %>
+                           <div class="three fields">
+                              <div class="field">
+                                  <%= f.select :status, options_for_select(["待機", "稼働", "終了"]), {}, { class: 'ui fluid dropdown' } %>
+                              </div>
+                              <div class="field">
+                                  <%= f.submit "変更", class: 'ui blue basic button'%>
+                              </div>
+                            </div>
+                        <% end %>
+                  </div>
+                  <%= link_to "編集", edit_election_path(election.id), { :class => "ui olive basic button" } %>
+                  <%= link_to "削除", election, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
+                </div>
+            </div>
         </div>
       </div>
     </div>
   </div>
-  
-  <div class="extra content">
-    <div class="six wide field">
-          <%= form_for(election, url: election_path(election), html: {method: 'patch', class: 'ui form'}) do |f| %>
-             <div class="two fields">
-                <div class="field">
-                    <%= f.select :status, options_for_select(["待機", "稼働", "終了"]), {}, { class: 'ui fluid dropdown' } %>
-                </div>
-                <div class="field">
-                    <%= f.submit "変更", class: 'ui blue basic button'%>
-                </div>
-              </div>
-          <% end %>
-    </div>
-    <%= link_to "編集", edit_election_path(election.id), { :class => "ui olive basic button" } %>
-    <%= link_to "削除", election, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
-  </div>
 </div>
-<% end %>
-<% end %>
-<% end %>
-
-
-
-<% if id == 2 %>
-<% elections.each do |election| %>
-<% if election.status == "稼働" %>
-<div class="ui card">
-  <div class="content">
-    <div class="header"><%= link_to"#{election.name}", election %></div>
-  </div>
-  
-  <div class="content">
-    <div class="ui small feed">
-      <div class="event">
-        <div class="content">
-          <div class="summary word-break">
-             <%= election.description.truncate(100) if !election.description.nil? %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="extra content">
-    <div class="six wide field">
-          <%= form_for(election, url: election_path(election), html: {method: 'patch', class: 'ui form'}) do |f| %>
-             <div class="two fields">
-                <div class="field">
-                    <%= f.select :status, options_for_select(["待機", "稼働", "終了"]), {}, { class: 'ui fluid dropdown' } %>
-                </div>
-                <div class="field">
-                    <%= f.submit "変更", class: 'ui blue basic button'%>
-                </div>
-              </div>
-          <% end %>
-    </div>
-    <%= link_to "編集", edit_election_path(election.id), { :class => "ui olive basic button" } %>
-    <%= link_to "削除", election, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
-  </div>
-</div>
-<% end %>
-<% end %>
-<% end %>
-
-
-<% if id == 3 %>
-<% elections.each do |election| %>
-<% if election.status == "終了" %>
-<div class="ui card">
-  <div class="content">
-    <div class="header"><%= link_to"#{election.name}", election %></div>
-  </div>
-  
-  <div class="content">
-    <div class="ui small feed">
-      <div class="event">
-        <div class="content">
-          <div class="summary word-break">
-             <%= election.description.truncate(100) %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="extra content">
-    <div class="six wide field">
-          <%= form_for(election, url: election_path(election), html: {method: 'patch', class: 'ui form'}) do |f| %>
-             <div class="two fields">
-                <div class="field">
-                    <%= f.select :status, options_for_select(["待機", "稼働", "終了"]), {}, { class: 'ui fluid dropdown' } %>
-                </div>
-                <div class="field">
-                    <%= f.submit "変更", class: 'ui blue basic button'%>
-                </div>
-              </div>
-          <% end %>
-    </div>
-    <%= link_to "編集", edit_election_path(election.id), { :class => "ui olive basic button" } %>
-    <%= link_to "削除", election, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
-  </div>
-</div>
-<% end %>
 <% end %>
 <% end %>

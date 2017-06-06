@@ -1,6 +1,6 @@
 
 
-<%= form_for(@election,  html: {class: 'ui form'}) do |f| %>
+<%= form_for(@election, url: elections_path(@election), html: {method: 'post', class: 'ui form'}) do |f| %>
   <div class="three fields">
     <div class="field">
       <label>選挙名</label>

@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
+//= require semantic-ui/accordion
+//= require semantic-ui/dropdown
 //= require turbolinks
 //= require_tree .
 

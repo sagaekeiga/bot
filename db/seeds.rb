@@ -9,12 +9,15 @@ Bot.create!(name:  "サンプル",
              upper:              "<table border='2' cellpadding='0' cellspacing='0' style='width: 700px;' width='489'>")
 Election.create!(name:  "サンプル",
              description: "http://www.city.shijonawate.lg.jp/gyosei/senkyogyoseiinkai/senkyo/shichousenkyo/1487916794217.html",
+             article_id:              "11111",
              status:              "待機")
 Election.create!(name:  "サンプル",
              description: "http://www.city.shijonawate.lg.jp/gyosei/senkyogyoseiinkai/senkyo/shichousenkyo/1487916794217.html",
+             article_id:              "11111",
              status:              "稼働")
 Election.create!(name:  "サンプル",
              description: "http://www.city.shijonawate.lg.jp/gyosei/senkyogyoseiinkai/senkyo/shichousenkyo/1487916794217.html",
+             article_id:              "11111",
              status:              "終了")
 for num in 1..10 do
 Task.create!(name:  "サンプル",

@@ -1,8 +1,4 @@
 class ElectionsController < ApplicationController
-  
-    def new
-     @election = Election.new
-    end
 
     def create
      @election = Election.new(election_params)
@@ -19,10 +15,13 @@ class ElectionsController < ApplicationController
     end
     
     def index
-      @tasks = Task.all
+      @tasks = Task.order("deadline")
       @elections = Election.all
       @election = Election.new
       @task = Task.new
+      @waited_elections = Election.where(status: "待機")
+      @doing_elections = Election.where(status: "稼働")
+      @closed_elections = Election.where(status: "終了")
     end
     
     def delete_all
@@ -53,6 +52,6 @@ class ElectionsController < ApplicationController
       private
       
         def election_params
-          params.require(:election).permit(:name, :description, :status)
+          params.require(:election).permit(:name, :description, :article_id, :status)
         end
 end
