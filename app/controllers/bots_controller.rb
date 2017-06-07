@@ -30,7 +30,7 @@ class BotsController < ApplicationController
     
     def index
       @q = Bot.search(params[:q])
-      @results = @q.result(distinct: true).page(params[:page])
+      @results = @q.result(distinct: true)
     end
     
     def show
