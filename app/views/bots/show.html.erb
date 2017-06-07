@@ -4,6 +4,10 @@
   <div class="row">
     <div class="three wide column">
 <div class="ui vertical menu">
+<%= link_to "新規登録", new_bot_path, { :class => "item" } %>
+<%= link_to "crawl", bots_crawl_path(id: @bot.id), { :class => "item" } %>
+<%= link_to "条件crawl", bots_if_crawl_path(id: @bot.id), { :class => "item" } %>
+<%= link_to "抜粋crawl", bots_slice_crawl_path(id: @bot.id), { :class => "item" } %>
 <%= link_to "テスト（全体）", test_bots_path(id: @bot.id), { :class => "item" } %>
 <%= link_to "テスト（xpath）", test_crawl_bots_path(id: @bot.id), { :class => "item" } %>
 <%= link_to "テスト（文字条件）", test_if_crawl_bots_path(id: @bot.id), { :class => "item" } %>

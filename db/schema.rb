@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170605142239) do
     t.text     "description"
     t.text     "article_id"
     t.text     "status"
+    t.text     "worker"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

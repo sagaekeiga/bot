@@ -1,11 +1,8 @@
 <div class="ui segment">
   <h3 class="ui right aligned header">
-    <%= link_to "HOME", root_path, { :class => "ui yellow basic button" } %>
-    <%= link_to "新規登録", new_bot_path, { :class => "ui primary basic button" } %>
-    <%= link_to "詳細ページ", @bot, { :class => "ui orange basic button" } %>
-    <%= link_to "crawl", bots_crawl_path(id: @bot.id), { :class => "ui olive basic button" } %>
-    <%= link_to "条件crawl", bots_if_crawl_path(id: @bot.id), { :class => "ui teal basic button" } %>
-    <%= link_to "抜粋crawl", bots_slice_crawl_path(id: @bot.id), { :class => "ui red basic button" } %>
+    <%= link_to "クローラー", root_path, { :class => "ui yellow basic button" } %>
+    <%= link_to "タスク・選挙進捗", elections_path, { :class => "ui teal basic button" } %>
+    <%= link_to "詳細ページ", @bot, { :class => "ui orange basic button" } if controller.action_name != "show" %>
   </h3>
   <h3 class="ui center aligned header">
     <%= search_form_for @q do |f| %>

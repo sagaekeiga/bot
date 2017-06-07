@@ -1,7 +1,7 @@
 
 
 <%= form_for(@election,  html: {class: 'ui form'}) do |f| %>
-  <div class="three fields">
+  <div class="four fields">
     <div class="field">
       <label>選挙名</label>
       <%= f.text_field :name, class: "" %>
@@ -15,6 +15,11 @@
     <div class="field">
       <label>状態</label>
       <%= f.select :status, options_for_select(["待機", "稼働", "終了"]), {}, { class: 'ui fluid dropdown' } %>
+    </div>
+    
+    <div class="field">
+      <label>担当者</label>
+      <%= f.select :worker, options_for_select(["小貫", "後藤", "寒河江", "伊藤"]), {}, { class: 'ui fluid dropdown' } %>
     </div>
   </div>
   

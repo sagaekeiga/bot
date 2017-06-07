@@ -10,14 +10,17 @@ Bot.create!(name:  "サンプル",
 Election.create!(name:  "サンプル",
              description: "http://www.city.shijonawate.lg.jp/gyosei/senkyogyoseiinkai/senkyo/shichousenkyo/1487916794217.html",
              article_id:              "11111",
+             worker:              "寒河江",
              status:              "待機")
 Election.create!(name:  "サンプル",
              description: "http://www.city.shijonawate.lg.jp/gyosei/senkyogyoseiinkai/senkyo/shichousenkyo/1487916794217.html",
              article_id:              "11111",
+             worker:              "寒河江",
              status:              "稼働")
 Election.create!(name:  "サンプル",
              description: "http://www.city.shijonawate.lg.jp/gyosei/senkyogyoseiinkai/senkyo/shichousenkyo/1487916794217.html",
              article_id:              "11111",
+             worker:              "寒河江",
              status:              "終了")
 for num in 1..10 do
 Task.create!(name:  "サンプル",

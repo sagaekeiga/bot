@@ -52,6 +52,6 @@ class ElectionsController < ApplicationController
       private
       
         def election_params
-          params.require(:election).permit(:name, :description, :article_id, :status)
+          params.require(:election).permit(:name, :description, :article_id, :status, :worker)
         end
 end

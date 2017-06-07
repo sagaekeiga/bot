@@ -5,6 +5,7 @@ class CreateElections < ActiveRecord::Migration[5.0]
       t.text :description
       t.text :article_id
       t.text :status
+      t.text :worker
 
       t.timestamps
     end

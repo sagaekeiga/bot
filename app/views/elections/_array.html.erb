@@ -18,18 +18,6 @@
                 </div>
                 <div class="word-break content">
                   <%= election.description.truncate(100) if !election.description.nil? %>
-                  <div class="six wide field"><br/>
-                        <%= form_for(election, url: election_path(election), html: {method: 'patch', class: 'ui form'}) do |f| %>
-                           <div class="three fields">
-                              <div class="field">
-                                  <%= f.select :status, options_for_select(["待機", "稼働", "終了"]), {}, { class: 'ui fluid dropdown' } %>
-                              </div>
-                              <div class="field">
-                                  <%= f.submit "変更", class: 'ui blue basic button'%>
-                              </div>
-                            </div>
-                        <% end %>
-                  </div>
                   <%= link_to "編集", edit_election_path(election.id), { :class => "ui olive basic button" } %>
                   <%= link_to "削除", election, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
                 </div>
@@ -48,9 +36,25 @@
     <% elsif election.status == "終了" %>
         <div class="ui grey label"><%= election.status %></div>
     <% end %>
-    
-    <br/>
 
+    <div class="ui teal tag label"><i class="user icon"></i><%= election.worker %></div>
+
+    <br/>
+    <div class="six wide field"><br/>
+          <%= form_for(election, url: election_path(election), html: {method: 'patch', class: 'ui form'}) do |f| %>
+             <div class="three fields">
+                <div class="field">
+                    <%= f.select :status, options_for_select(["待機", "稼働", "終了"]), {}, { class: 'ui fluid dropdown' } %>
+                </div>
+                <div class="field">
+                    <%= f.select :worker, options_for_select(["未定", "小貫", "後藤", "寒河江", "伊藤"]), {}, { class: 'ui fluid dropdown' } %>
+                </div>
+                <div class="field">
+                    <%= f.submit "変更", class: 'ui blue basic button'%>
+                </div>
+              </div>
+          <% end %>
+    </div>
   </div>
 </div>
 <% end %>
@@ -76,24 +80,36 @@
                 </div>
                 <div class="word-break content">
                   <%= election.description.truncate(100) if !election.description.nil? %>
-                  <div class="six wide field"><br/>
-                        <%= form_for(election, url: election_path(election), html: {method: 'patch', class: 'ui form'}) do |f| %>
-                           <div class="three fields">
-                              <div class="field">
-                                  <%= f.select :status, options_for_select(["待機", "稼働", "終了"]), {}, { class: 'ui fluid dropdown' } %>
-                              </div>
-                              <div class="field">
-                                  <%= f.submit "変更", class: 'ui blue basic button'%>
-                              </div>
-                            </div>
-                        <% end %>
-                  </div>
                   <%= link_to "編集", edit_election_path(election.id), { :class => "ui olive basic button" } %>
                   <%= link_to "削除", election, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
                 </div>
             </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="extra content">
+    <div class="ui teal tag label"><i class="user icon"></i><%= election.worker %></div>
+    <div class="six wide field"><br/>
+          <%= form_for(election, url: election_path(election), html: {method: 'patch', class: 'ui form'}) do |f| %>
+             <div class="three fields">
+                <div class="field">
+                    <%= f.select :status, options_for_select(["待機", "稼働", "終了"]), {}, { class: 'ui fluid dropdown' } if election.status == "待機"%>
+                    <%= f.select :status, options_for_select(["稼働", "待機", "終了"]), {}, { class: 'ui fluid dropdown' } if election.status == "稼働"%>
+                    <%= f.select :status, options_for_select(["終了", "待機", "稼働"]), {}, { class: 'ui fluid dropdown' } if election.status == "終了"%>
+                </div>
+                <div class="field">
+                    <%= f.select :worker, options_for_select(["小貫", "後藤", "寒河江", "伊藤", "未定"]), {}, { class: 'ui fluid dropdown' } if election.worker == "小貫"%>
+                    <%= f.select :worker, options_for_select(["後藤", "寒河江", "伊藤", "小貫", "未定"]), {}, { class: 'ui fluid dropdown' } if election.worker == "後藤"%>
+                    <%= f.select :worker, options_for_select(["伊藤", "小貫", "後藤", "寒河江", "未定"]), {}, { class: 'ui fluid dropdown' } if election.worker == "伊藤"%>
+                    <%= f.select :worker, options_for_select(["寒河江", "小貫", "後藤", "伊藤", "未定"]), {}, { class: 'ui fluid dropdown' } if election.worker == "寒河江"%>
+                    <%= f.select :worker, options_for_select(["未定", "小貫", "後藤", "寒河江", "伊藤"]), {}, { class: 'ui fluid dropdown' } if election.worker == "未定"%>
+                </div>
+                <div class="field">
+                    <%= f.submit "変更", class: 'ui blue basic button'%>
+                </div>
+              </div>
+          <% end %>
     </div>
   </div>
 </div>

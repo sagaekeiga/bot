@@ -1,25 +1,5 @@
 <div class="ui internally celled grid">
   <div class="row">
-    <div class="sixteen wide column">
-      <div class="ui segment">
-            <div class="ui accordion">
-                <div class="active title">
-                  <i class="dropdown icon"></i>
-                  選挙登録
-                </div>
-                <div class="word-break content">
-                  <%= render 'elections/new' %>
-                </div>
-            </div>
-      </div>
-    </div>
-    
-  </div>
-</div>
-
-
-<div class="ui internally celled grid">
-  <div class="row">
     <div class="four wide column">
         <div class="ui large violet message">
           タスク一覧
@@ -33,7 +13,7 @@
               </div>
               
              <div class="two fields">
-                <%= f.time_select :deadline, {}, class: "" %>
+                <%= f.time_select :deadline, {minute_step: 10}, class: "" %>
               </div>
               
               <div class="actions">
@@ -54,6 +34,9 @@
     <div class="three wide column">
         <div class="ui large brown message">
           今日の選挙一覧　 <%= @elections.count %>
+        </div>
+        <div class="word-break content">
+          <%= render 'elections/new' %>
         </div>
         <%= render 'elections/array', elections: @elections, id: 0, resource: @election %>
     </div>

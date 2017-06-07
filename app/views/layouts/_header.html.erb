@@ -1,9 +1,7 @@
 <div class="ui segment">
   <h3 class="ui right aligned header">
-    <%= link_to "HOME", root_path, { :class => "ui yellow basic button" } %>
+    <%= link_to "クローラー", root_path, { :class => "ui yellow basic button" } %>
     <%= link_to "タスク・選挙進捗", elections_path, { :class => "ui teal basic button" } %>
-    <%= link_to "新規登録", new_bot_path, { :class => "ui primary basic button" } %>
-    <%= link_to "全て削除", bots_delete_all_path, { :class => "ui negative basic button", data: { confirm: "本当に削除してもいいですか？" }} %>
   </h3>
   <h3 class="ui center aligned header">
     <%= search_form_for @q do |f| %>
@@ -14,3 +12,12 @@
     <% end %>
   </h3>
 </div>
+
+  <div class="ui grid">
+  <div class="four column row">
+    <div class="column"><%= link_to "新規登録", new_bot_path, { :class => "fluid ui blue button" } %></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"><%= link_to "全て削除", bots_delete_all_path, { :class => "fluid ui red button", data: { confirm: "本当に削除してもいいですか？" }} %></div>
+  </div>
+  </div>
