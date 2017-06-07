@@ -3,7 +3,7 @@
 <div class="ui card">
   <div class="content">
     <div class="header"><%= link_to"#{election.name}", election %></div>
-    <div class="meta"><%= "ID:" + election.article_id %></div>
+    <div class="meta"><%= "ID:" + "#{election.article_id}" %></div>
   </div>
 
   
@@ -17,7 +17,7 @@
                   詳細
                 </div>
                 <div class="word-break content">
-                  <%= election.description.truncate(100) if !election.description.nil? %>
+                  <%= election.description.truncate(100) if !election.description.nil? %><br/>
                   <%= link_to "編集", edit_election_path(election.id), { :class => "ui olive basic button" } %>
                   <%= link_to "削除", election, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
                 </div>
@@ -37,7 +37,18 @@
         <div class="ui grey label"><%= election.status %></div>
     <% end %>
 
-    <div class="ui teal tag label"><i class="user icon"></i><%= election.worker %></div>
+    <% if election.worker == "未定" %>
+      <div class="ui grey tag label"><i class="user icon"></i><%= election.worker %></div>
+    <% elsif election.worker == "伊藤" %>
+      <div class="ui yellow tag label"><i class="user icon"></i><%= election.worker %></div>
+    <% elsif election.worker == "後藤" %>
+      <div class="ui purple tag label"><i class="user icon"></i><%= election.worker %></div>
+    <% elsif election.worker == "小貫" %>
+      <div class="ui olive tag label"><i class="user icon"></i><%= election.worker %></div>
+    <% elsif election.worker == "寒河江" %>
+      <div class="ui teal tag label"><i class="user icon"></i><%= election.worker %></div>
+    <% end %>
+    
 
     <br/>
     <div class="six wide field"><br/>
@@ -66,7 +77,7 @@
 <div class="ui card">
   <div class="content">
     <div class="header"><%= link_to"#{election.name}", election %></div>
-    <div class="meta"><%= "ID:" + election.article_id %></div>
+    <div class="meta"><%= "ID:" + "#{election.article_id}" %></div>
   </div>
   
   <div class="extra content">
@@ -79,7 +90,7 @@
                   詳細
                 </div>
                 <div class="word-break content">
-                  <%= election.description.truncate(100) if !election.description.nil? %>
+                  <%= election.description.truncate(100) if !election.description.nil? %><br/>
                   <%= link_to "編集", edit_election_path(election.id), { :class => "ui olive basic button" } %>
                   <%= link_to "削除", election, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
                 </div>
@@ -89,7 +100,19 @@
     </div>
   </div>
   <div class="extra content">
-    <div class="ui teal tag label"><i class="user icon"></i><%= election.worker %></div>
+    
+    <% if election.worker == "未定" %>
+      <div class="ui grey tag label"><i class="user icon"></i><%= election.worker %></div>
+    <% elsif election.worker == "伊藤" %>
+      <div class="ui yellow tag label"><i class="user icon"></i><%= election.worker %></div>
+    <% elsif election.worker == "後藤" %>
+      <div class="ui purple tag label"><i class="user icon"></i><%= election.worker %></div>
+    <% elsif election.worker == "小貫" %>
+      <div class="ui olive tag label"><i class="user icon"></i><%= election.worker %></div>
+    <% elsif election.worker == "寒河江" %>
+      <div class="ui teal tag label"><i class="user icon"></i><%= election.worker %></div>
+    <% end %>
+    
     <div class="six wide field"><br/>
           <%= form_for(election, url: election_path(election), html: {method: 'patch', class: 'ui form'}) do |f| %>
              <div class="three fields">

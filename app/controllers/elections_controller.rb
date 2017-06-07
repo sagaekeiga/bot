@@ -2,8 +2,17 @@ class ElectionsController < ApplicationController
 
     def create
      @election = Election.new(election_params)
-     @election.save
-     redirect_to elections_path
+     if @election.save
+       redirect_to elections_path
+     else
+       @elections = Election.all
+       @waited_elections = Election.where(status: "待機")
+       @doing_elections = Election.where(status: "稼働")
+       @closed_elections = Election.where(status: "終了")
+       @task = Task.new
+       @tasks = Task.order("deadline")
+       render 'elections/index'
+     end
     end
     
     def destroy

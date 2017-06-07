@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20170605142239) do
   create_table "elections", force: :cascade do |t|
     t.text     "name"
     t.text     "description"
-    t.text     "article_id"
+    t.integer  "article_id"
     t.text     "status"
     t.text     "worker"
     t.datetime "created_at",  null: false
