@@ -1,4 +1,4 @@
 class Bot < ApplicationRecord
-  validates :article_id, presence: true, length: { maximum: 10 }
   validates :url, presence: true
+  validates :article_id, length: { is: 6 }
 end

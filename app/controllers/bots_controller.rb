@@ -10,8 +10,11 @@ class BotsController < ApplicationController
 
     def create
      @bot = Bot.new(bot_params)
-     @bot.save
-     redirect_to bots_path
+     if @bot.save
+         redirect_to bots_path
+     else
+       render 'bots/new'
+     end
     end
     
     def destroy
@@ -113,8 +116,12 @@ class BotsController < ApplicationController
     
     def update
         @bot = Bot.find(params[:id])
-        @bot.update(bot_params)
-        redirect_to @bot
+        @q = Bot.search(params[:q])
+        if @bot.update(bot_params)
+            redirect_to @bot
+        else
+            render 'bots/edit'
+        end
     end
     
     def test_crawl
