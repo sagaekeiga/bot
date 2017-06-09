@@ -32,6 +32,7 @@ gem "nokogiri"
 gem "ransack"
 
 gem 'mysql2'
+gem 'mysql'
 gem 'unicorn'
 
 gem 'qiita-markdown'
