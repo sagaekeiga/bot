@@ -14,6 +14,7 @@ class TasksController < ApplicationController
         redirect_to elections_path
     end
     
+    
     def update
         @task = Task.find(params[:id])
         @task.update(task_params)

@@ -1,0 +1,19 @@
+<div class="ui accordion">
+    <div class="title">
+      <i class="dropdown icon"></i>
+      編集
+    </div>
+    <div class="word-break content">
+      <%= form_for(task, url: task_path(task), html: {method: 'patch', class: 'ui form'}) do |f| %>
+            <div class="field">
+                <%= f.text_field :name, class: "" %>
+            </div>
+            <div class="two fields">
+                <%= f.time_select :deadline, {:default => {:hour => '21', :minute => '00'}, minute_step: 10}, class: "" %>
+            </div>
+            <div class="field">
+                <%= f.submit "変更", class: 'ui blue basic button'%>
+            </div>
+      <% end %><br>
+    </div>
+</div><br>

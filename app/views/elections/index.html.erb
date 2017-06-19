@@ -1,3 +1,4 @@
+<title>タスク・選挙一覧</title>
 
 <div class="ui internally celled grid">
   <div class="row">
@@ -14,7 +15,7 @@
               </div>
               
              <div class="two fields">
-                <%= f.time_select :deadline, {minute_step: 10}, class: "" %>
+                <%= f.time_select :deadline, {:default => {:hour => '21', :minute => '00'}, minute_step: 10}, class: "" %>
               </div>
               
               <div class="actions">
@@ -22,11 +23,16 @@
               </div>
             <% end %>
         </div>
+        
         <div class="ui segments">
             <% @tasks.each do |task| %>
               <div class="ui segment">
                 <p><%= task.deadline.strftime('%H時%M分') %></p>
                 <p><%= task.name %></p>
+                  
+                  <!--task編集-->
+                  <%= render 'tasks/edit', task: task %>
+                  
                 <%= link_to "削除", task, { :class => "ui red button", method: :delete, data: { confirm: "本当に削除してもいいですか？" }} %>
               </div>
             <% end %>
@@ -67,7 +73,6 @@
     </div>
   </div>
 </div>
-
 
 <script>
 $('.ui.accordion').accordion();

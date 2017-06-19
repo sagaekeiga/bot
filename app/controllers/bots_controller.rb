@@ -92,6 +92,7 @@ class BotsController < ApplicationController
         @slice_crawl_pre = @doc.slice(@index_doc..@end_doc)
         @table_doc = @slice_crawl_pre.index("table>") + 5
         @slice_crawl = @slice_crawl_pre.slice(0..@table_doc)
+        @time = Time.new.strftime("%Y-%m-%d　%H:%M")
         begin
              connection = Mysql::connect("153.127.212.231", "miyagise_sagae", "s19930528", "miyagise_senkyo_db")
              connection.query("set character set utf8")
