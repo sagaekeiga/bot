@@ -1,6 +1,5 @@
 class BotsController < ApplicationController
 # encoding: utf-8
-    http_basic_authenticate_with name: "seijipress", password: "seijipress"
     require 'kconv'
 
     def new
