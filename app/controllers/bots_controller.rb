@@ -161,6 +161,9 @@ class BotsController < ApplicationController
         @error = params[:error]
     end
     
+    def togikai
+    end
+    
       private
       
         def bot_params

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'bots/slice_crawl', to: 'bots#slice_crawl'
   get 'bots/delete_all', to: 'bots#delete_all'
   get 'elections/delete_all', to: 'elections#delete_all'
+  get 'bots/togikai', to: 'bots#togikai'
   
   resources :elections
   resources :tasks, only: [:create, :destroy, :update]
