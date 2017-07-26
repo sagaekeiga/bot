@@ -9,16 +9,14 @@
 
 set :branch, 'master'
 
-role :app, %w{anime@160.16.198.30}
-role :web, %w{anime@160.16.198.30}
-role :db,  %w{anime@160.16.198.30}
+role :app, %w{solacom_test@153.127.217.178}
+role :web, %w{solacom_test@153.127.217.178}
+role :db,  %w{solacom_test@153.127.217.178}
 
-server '160.16.198.30', user: 'anime', roles: %w{web app db}
+server '153.127.217.178', user: 'solacom', roles: %w{web app db}
 
 set :ssh_options, {
     forward_agent: true,
-    auth_methods: %w(publickey),
-    port: 61203
 }
 
 

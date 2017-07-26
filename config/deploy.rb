@@ -1,21 +1,23 @@
 # config valid only for current version of Capistrano
+
+
+
 lock "3.7.2"
 
-set :application, "bot"
+set :application, "terror"
 set :repo_url, "https://github.com/sagaekeiga/bot.git"
-
-
-
-set :deploy_to, '/home/anime/bot/'
+set :deploy_to, '/home/solacom_test/work/terror'
 
 set :keep_releases, 5
-set :ssh_options, :port => "61203"
 
 set :rbenv_type, :system # :system or :user
-set :rbenv_ruby, '2.3.1'
-set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
-set :rbenv_roles, :all # default value
+set :rbenv_custom_path, '~/.rbenv'
+set :rbenv_roles, :all
+set :rbenv_ruby, '2.3.1'
+set :rbenv_path, '/home/solacom_test/.rbenv'
+
+
 
 set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle}
 set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
@@ -23,8 +25,9 @@ set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 set :bundle_jobs, 4
 
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+set :whenever_roles, ->{:batch}
+
 set :whenever_command, "bundle exec whenever"
-set :whenever_roles, :batch # 対象のロールを指定
 set :whenever_environment, :production
 require "whenever/capistrano"
 
